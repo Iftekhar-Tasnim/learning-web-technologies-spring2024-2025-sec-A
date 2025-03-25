@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Date of Birth Validation</title>
+</head>
+<body style="margin: 20px;">
+    <form onsubmit="return validateDOB()">
+        <label for="dob">Date of Birth:</label><br>
+        <input type="text" id="dd" name="dd" placeholder="dd" maxlength="2" size="2">
+        <span>/</span>
+        <input type="text" id="mm" name="mm" placeholder="mm" maxlength="2" size="2">
+        <span>/</span>
+        <input type="text" id="yyyy" name="yyyy" placeholder="yyyy" maxlength="4" size="4">
+        <p id="error"></p>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateDOB() {
+            let dd = document.getElementById('dd').value.trim();
+            let mm = document.getElementById('mm').value.trim();
+            let yyyy = document.getElementById('yyyy').value.trim();
+            let error = document.getElementById('error');
+
+            
+            if (dd === "" || mm === "" || yyyy === "") {
+                error.textContent = "All fields are required!";
+                return false;
+            }
+
+            
+            if (isNaN(dd) || dd < 1 || dd > 31) {
+                error.textContent = "Invalid day! Please enter a value between 01 and 31.";
+                return false;
+            }
+
+            
+            if (isNaN(mm) || mm < 1 || mm > 12) {
+                error.textContent = "Invalid month! Please enter a value between 01 and 12.";
+                return false;
+            }
+
+            
+            if (isNaN(yyyy) || yyyy < 1900 || yyyy > 2016) {
+                error.textContent = "Invalid year! Please enter a value between 1900 and 2016.";
+                return false;
+            }
+
+            
+            error.textContent = "";
+            alert("Date of Birth is valid!");
+            return true;
+        }
+    </script>
+</body>
+</html>

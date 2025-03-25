@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile Picture Validation</title>
+    <style>
+        .container {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Profile Picture</h3>
+        <label for="userId">User Id:</label>
+        <input type="text" id="userId" name="userId" placeholder="Enter User Id">
+        <p id="userIdError" class="error"></p>
+
+        <label for="profilePicture">Picture:</label>
+        <input type="file" id="profilePicture" name="profilePicture">
+        <p id="pictureError" class="error"></p>
+
+        <button onclick="validateForm()">Submit</button>
+    </div>
+
+    <script>
+        function validateForm() {
+            let userId = document.getElementById('userId').value.trim();
+            let profilePicture = document.getElementById('profilePicture').files[0];
+            let userIdError = document.getElementById('userIdError');
+            let pictureError = document.getElementById('pictureError');
+
+            userIdError.textContent = "";
+            pictureError.textContent = "";
+
+            if (userId === "") {
+                userIdError.textContent = "User Id cannot be empty.";
+                return false;
+            }
+
+            if (!/^\d+$/.test(userId)) {
+                userIdError.textContent = "User Id must be a positive number.";
+                return false;
+            }
+
+            if (!profilePicture) {
+                pictureError.textContent = "Please select a picture.";
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</body>
+</html>
